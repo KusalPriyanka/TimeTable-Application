@@ -33,5 +33,6 @@ namespace TimeTable_App.Models
         [Required]
         [MaxLength(1)]
         public string Status { get; set; }
+
     }
 }
