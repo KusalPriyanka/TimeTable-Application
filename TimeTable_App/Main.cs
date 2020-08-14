@@ -9,7 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimeTable_App.Forms;
+using TimeTable_App.Global;
 using TimeTable_App.GlobalFunction;
+using TimeTable_App.Models;
+
+/*
+ *      Class Name      -   Main
+ *      Author          -   Kusal Perera
+ *      Date            -   14/08/2020
+ *      Description     -   Handle the Dashboard of the App. 
+ *      
+ *      Version Control
+ *          * [Kusal Perera]
+ *              Implement the Function to render all forms dynamically from database.
+ *      
+ */
 
 namespace TimeTable_App
 {
@@ -25,39 +39,5 @@ namespace TimeTable_App
             _dashFunction = new DashboardFunction(ApplicationPanel, FormPanel);
         }
 
-        public void initForm() 
-        {
-            
-            Button btn = new Button();
-            btn.Text = "Click Me";
-            btn.Name = "btn1";
-            btn.Size = new Size(250, 50);
-            btn.Location = new Point(0, 50 * 1);
-            btn.Click += new EventHandler(button1_Click);
-            btn.BackColor = Color.White;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            ApplicationPanel.Controls.Add(btn);
-
-            Button btn1 = new Button();
-            btn1.Text = "Click";
-            btn1.Name = "btn1";
-            btn1.Size = new Size(250, 50);
-            btn1.Location = new Point(0, 50 * 2);
-            ApplicationPanel.Controls.Add(btn1);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Type type = Type.GetType("TimeTable_App.Forms.LecturersForm");
-            object obj = Activator.CreateInstance(type);
-            if (!FormPanel.Controls.Contains((Control)obj))
-            {
-                FormPanel.Controls.Add((Control)obj);
-                LecturersForm.Instance.Dock = DockStyle.Fill;
-                LecturersForm.Instance.BringToFront();
-            }
-            else { LecturersForm.Instance.BringToFront(); }
-        }
     }
 }
