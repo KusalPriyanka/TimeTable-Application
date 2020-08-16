@@ -29,11 +29,12 @@ namespace TimeTable_App.Global
 
         private TimeTableDbContext getDbContext() 
         {
-            if (_dbContext == null) { _dbContext = new TimeTableDbContext(); }
+            //if (_dbContext == null) { _dbContext = new TimeTableDbContext(); }
+            _dbContext = new TimeTableDbContext();
             return _dbContext;
         }
 
-        public ActionResult _saveFormData<T>(T saveObj) 
+        public ActionResult _saveFormData<T>(T saveObj, bool generatedValues = false) 
         {
 
             ActionResult ActionResult;
@@ -42,6 +43,15 @@ namespace TimeTable_App.Global
             {
                 _dbContext = getDbContext();
                 var _db = _dbContext.Set(saveObj.GetType());
+
+                if (generatedValues) 
+                {
+                    Object modelObj = Activator.CreateInstance(saveObj.GetType());
+                    MethodInfo methodInfo = saveObj.GetType().GetMethod("GetId");
+                    dynamic result = methodInfo.Invoke(modelObj, new object[] { saveObj });
+                    saveObj = result;
+                }
+
                 _db.Add(saveObj);
                 _dbContext.SaveChanges();
 
@@ -104,7 +114,7 @@ namespace TimeTable_App.Global
                 _dbContext = getDbContext();
                 Object modelObj = Activator.CreateInstance(modelType);
                 MethodInfo methodInfo = modelType.GetMethod("GetFormData");
-                dynamic result = methodInfo.Invoke(modelObj, new object[] { _dbContext , Type});
+                dynamic result = methodInfo.Invoke(modelObj, new object[] { _dbContext , Type });
                 ActionResult = new ActionResult() { State = true, Data = result };
             }
             catch (Exception ex)
