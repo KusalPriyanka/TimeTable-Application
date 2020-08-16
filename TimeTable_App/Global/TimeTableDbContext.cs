@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
+using TimeTable_App.Migrations;
 using TimeTable_App.Models;
 
 /*
@@ -22,9 +23,15 @@ namespace TimeTable_App.Global
     {
         public TimeTableDbContext() : base("DBCON") 
         {
-            Database.SetInitializer<TimeTableDbContext>(new CreateDatabaseIfNotExists<TimeTableDbContext>());
+            Database.SetInitializer<TimeTableDbContext>(new Configuration());
         }
 
         public DbSet<AppFormsModel> AppForms { get; set; }
+        public DbSet<LecturersFormModel> Lecturers { get; set; }
+        public DbSet<FacultyModel> Faculties { get; set; }
+        public DbSet<DepartmentModel> Departments { get; set; }
+        public DbSet<CenterModel> Centers { get; set; }
+        public DbSet<BuildingModel> Buildings { get; set; }
+        public DbSet<EmployeeLevelModel> EmployeeLevels { get; set; }
     }
 }
