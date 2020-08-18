@@ -147,6 +147,7 @@ namespace TimeTable_App.Forms
 
         private void comboLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrEmpty(txtEmpID.Text) && comboLevel.SelectedIndex > 0) 
             {
                 txtRank.Text = comboLevel.SelectedIndex.ToString() + "." + txtEmpID.Text.Trim();
