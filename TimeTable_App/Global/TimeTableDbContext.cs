@@ -33,5 +33,6 @@ namespace TimeTable_App.Global
         public DbSet<CenterModel> Centers { get; set; }
         public DbSet<BuildingModel> Buildings { get; set; }
         public DbSet<EmployeeLevelModel> EmployeeLevels { get; set; }
+        public DbSet<AppSubFormsModel> AppSubForms { get; set; }
     }
 }
