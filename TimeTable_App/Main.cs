@@ -22,6 +22,8 @@ using TimeTable_App.Models;
  *      Version Control
  *          * [Kusal Perera]
  *              Implement the Function to render all forms dynamically from database.
+ *          * [Kusal Perera]    
+ *              Form Panel Auto Scrolling Enable.
  *      
  */
 
@@ -36,6 +38,7 @@ namespace TimeTable_App
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormPanel.AutoScroll = true;
             _dashFunction = new DashboardFunction(ApplicationPanel, FormPanel);
         }
 
