@@ -14,6 +14,13 @@
         {
             // Adding Forms
             context.AppForms.Add(new AppFormsModel() { FormName = "Lecturers", FormDesc = "Manage Lecturers", FormController = "LecturersForm", Status = "A"});
+            context.AppForms.Add(new AppFormsModel() { FormName = "Students", FormDesc = "Manage Student", FormController = "StudentsForm", Status = "A" });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Tags", FormDesc = "Manage Tags", FormController = "TagsForm", Status = "A" });
+
+
+            //Adding Sub Forms
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Programme", SubFormDesc = "Manage Programme ", SubFormController = "ProgrammeSubForm", Status = "A", FormId = 2 });
+
 
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
