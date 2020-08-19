@@ -6,6 +6,18 @@ using System.Linq;
 using System.Text;
 using TimeTable_App.Global;
 
+/*
+ *      Class Name      -   LecturersFormModel
+ *      Author          -   Kusal Perera
+ *      Date            -   18/08/2020
+ *      Description     -   Handle the details about the Lecturers. 
+ *      
+ *      Version Control
+ *          * [Kusal Perera]
+ *              Implement the class to handle Lecturers details.
+ *      
+ */
+
 namespace TimeTable_App.Models
 {
     public class LecturersFormModel
