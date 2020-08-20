@@ -22,6 +22,8 @@
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Programme", SubFormDesc = "Manage Programme ", SubFormController = "ProgrammeSubForm", Status = "A", FormId = 2 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Year And Semester", SubFormDesc = "Manage ASY ", SubFormController = "ASYSubForm", Status = "A", FormId = 2 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Groups", SubFormDesc = "Manage Groups", SubFormController = "GroupsSubForm", Status = "A", FormId = 2 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Group ID", SubFormDesc = "Manage Group ID", SubFormController = "GroupIDSubForm", Status = "A", FormId = 2 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sub Group ID", SubFormDesc = "Manage Sub Group ID", SubFormController = "SubGroupIDSubForm", Status = "A", FormId = 2 });
 
 
             // Adding Faculties [Kusal Perera]

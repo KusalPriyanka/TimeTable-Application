@@ -38,5 +38,7 @@ namespace TimeTable_App.Global
         public DbSet<TagsModel> Tags { get; set; }
         public DbSet<ASYModel> ASY { get; set; }
         public DbSet<GroupsModel> Groups { get; set; }
+        public DbSet<GroupIDModel> GroupID { get; set; }
+        public DbSet<SubGroupIDModel> SubGroupID { get; set; }
     }
 }
