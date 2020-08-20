@@ -21,6 +21,7 @@
             //Adding Sub Forms
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Programme", SubFormDesc = "Manage Programme ", SubFormController = "ProgrammeSubForm", Status = "A", FormId = 2 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Year And Semester", SubFormDesc = "Manage ASY ", SubFormController = "ASYSubForm", Status = "A", FormId = 2 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Groups", SubFormDesc = "Manage Groups", SubFormController = "GroupsSubForm", Status = "A", FormId = 2 });
 
 
             // Adding Faculties [Kusal Perera]
