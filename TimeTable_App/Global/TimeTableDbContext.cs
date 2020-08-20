@@ -37,5 +37,6 @@ namespace TimeTable_App.Global
         public DbSet<ProgrammeModel> Programme { get; set; }
         public DbSet<TagsModel> Tags { get; set; }
         public DbSet<ASYModel> ASY { get; set; }
+        public DbSet<GroupsModel> Groups { get; set; }
     }
 }
