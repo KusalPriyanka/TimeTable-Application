@@ -84,7 +84,7 @@ namespace TimeTable_App.GlobalFunction
                     subFormBtn.Click += new EventHandler(SubFormClick);
                     FormPanel.Controls.Add(subFormBtn);
                     width += 250;
-                    if (count % 4 == 0 && count != 1) { height += 240; width = 40; }
+                    if (count % 3 == 0 && count != 1) { height += 240; width = 40; }
                     count++;
                 });
             }
