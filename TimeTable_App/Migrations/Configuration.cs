@@ -14,6 +14,12 @@
         {
             // Adding Forms
             context.AppForms.Add(new AppFormsModel() { FormName = "Lecturers", FormDesc = "Manage Lecturers", FormController = "LecturersForm", Status = "A"});
+            context.AppForms.Add(new AppFormsModel() { FormName = "Working D and H", FormDesc = "Working Days and Time", FormController = "WorkingDayTimeForm", Status = "A" });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Working Days", SubFormDesc = "Working Days", SubFormController = "WorkingDaySubForm", Status = "A", FormId = 2 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Time Slots", SubFormDesc = "Time Slots", SubFormController = "TimeSlotSubForm", Status = "A", FormId = 2 });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Subjects", FormDesc = "Manage Lecturers", FormController = "SubjectsForm", Status = "A" });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Students", FormDesc = "Manage Lecturers", FormController = "StudentsForm", Status = "A" });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Locations", FormDesc = "Manage Lecturers", FormController = "LocationsForm", Status = "A" });
 
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
@@ -43,6 +49,19 @@
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Lecturer", EmployeeLevelDesc = "Lecturer" });
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Assistant Lecturer", EmployeeLevelDesc = "Assistant Lecturer" });
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Instructors", EmployeeLevelDesc = "Instructors" });
+
+            // Adding Working Days & Hours [Dimuthu Abeysinghe]
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Sunday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Monday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Tuesday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Wednesday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Thursday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Friday", WorkHourPerDay = 0, status = "I" });
+            context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Saturday", WorkHourPerDay = 0, status = "I" });
+
+            // Adding Time Slots [Dimuthu Abeysinghe]
+            //context.TimeSlots.Add(new TimeSlotSubFormModel() { startTime = "8:30", endTime = "8:30" });
+
         }
     }
 }
