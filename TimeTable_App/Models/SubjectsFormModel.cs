@@ -41,7 +41,13 @@ namespace TimeTable_App.Models
         [Required]
         public int EvaluationHours { get; set; }
 
-
+        public SubjectsFormModel GetId(SubjectsFormModel obj)
+        {
+            TimeTableDbContext _dbContext = new TimeTableDbContext();
+            int exitCount = _dbContext.Subjects.Count() + 1;
+            obj.SubjectCode = "SUB" + exitCount.ToString().PadLeft(4, '0');
+            return obj;
+        }
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type) 
         {
