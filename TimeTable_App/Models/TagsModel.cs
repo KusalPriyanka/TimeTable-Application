@@ -8,25 +8,24 @@ using TimeTable_App.Global;
 
 namespace TimeTable_App.Models
 {
-    public class BuildingModel
+    public class TagsModel
     {
         [Key]
-        public int BuildingId { get; set; }
+        public int TagId { get; set; }
         [Required]
         [MaxLength(50)]
-        public string BuildingName { get; set; }
-        [Required]
-        [MaxLength(100)]
-        public string BuildingDesc { get; set; }
+        public string Tag { get; set; }
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
-            if (type == "Buildings")
+            if (type == "Tags")
             {
-                return _dbContext.Buildings.AsNoTracking().ToList();
+                return _dbContext.Tags.AsNoTracking().ToList();
             }
-
+            
             return null;
         }
     }
+
+    
 }

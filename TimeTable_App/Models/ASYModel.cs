@@ -6,27 +6,33 @@ using System.Linq;
 using System.Text;
 using TimeTable_App.Global;
 
+
 namespace TimeTable_App.Models
 {
-    public class BuildingModel
+    public class ASYModel
     {
         [Key]
-        public int BuildingId { get; set; }
+        public int ASYID { get; set; }
         [Required]
         [MaxLength(50)]
-        public string BuildingName { get; set; }
+        public string Year { get; set; }
         [Required]
-        [MaxLength(100)]
-        public string BuildingDesc { get; set; }
+        [MaxLength(50)]
+        public string Semester { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string YS { get; set; }
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
-            if (type == "Buildings")
+            if (type == "ASY")
             {
-                return _dbContext.Buildings.AsNoTracking().ToList();
+                return _dbContext.ASY.AsNoTracking().ToList();
             }
 
             return null;
         }
     }
+
+
 }
