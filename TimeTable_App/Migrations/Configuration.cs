@@ -16,9 +16,16 @@
             context.AppForms.Add(new AppFormsModel() { FormName = "Lecturers", FormDesc = "Manage Lecturers", FormController = "LecturersForm", Status = "A"});
             context.AppForms.Add(new AppFormsModel() { FormName = "Students", FormDesc = "Manage Student", FormController = "StudentsForm", Status = "A" });
             context.AppForms.Add(new AppFormsModel() { FormName = "Tags", FormDesc = "Manage Tags", FormController = "TagsForm", Status = "A" });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Locations", FormDesc = "Manage Locations", FormController = "LocationsForm", Status = "A" });
+            context.AppForms.Add(new AppFormsModel() { FormName = "Statistics", FormDesc = "Manage Statistics", FormController = "StatisticsForm", Status = "A" });
             context.AppForms.Add(new AppFormsModel() { FormName = "Subjects", FormDesc = "Manage Subjects", FormController = "SubjectsForm", Status = "A" });
             
-            // Adding Sub Forms
+            //Adding Sub Forms
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Buildings", SubFormDesc = "Manage Buildings", SubFormController = "BuildingsSubForm", Status = "A", FormId = 4 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms", SubFormDesc = "Manage Rooms", SubFormController = "RoomsSubForm", Status = "A", FormId = 4 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Lecturers Statistics", SubFormDesc = "Lecturers Statistics", SubFormController = "LecStatisticsSubForm", Status = "A", FormId = 5 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Subjects Statistics", SubFormDesc = "Subjects Statistics", SubFormController = "SubStatisticsSubForm", Status = "A", FormId = 5 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Students Statistics", SubFormDesc = "Students Statistics", SubFormController = "StuStatisticsSubForm", Status = "A", FormId = 5 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Programme", SubFormDesc = "Manage Programme ", SubFormController = "ProgrammeSubForm", Status = "A", FormId = 2 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Year And Semester", SubFormDesc = "Manage ASY ", SubFormController = "ASYSubForm", Status = "A", FormId = 2 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Groups", SubFormDesc = "Manage Groups", SubFormController = "GroupsSubForm", Status = "A", FormId = 2 });
@@ -53,6 +60,13 @@
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Lecturer", EmployeeLevelDesc = "Lecturer" });
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Assistant Lecturer", EmployeeLevelDesc = "Assistant Lecturer" });
             context.EmployeeLevels.Add(new EmployeeLevelModel() { EmployeeLevelName = "Instructors", EmployeeLevelDesc = "Instructors" });
+
+            // Adding Subjects [Ashen Senevirathna]
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1010", SubjectName = "IP", Year = "1", Semester = "1", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 0 });
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1020", SubjectName = "SPM", Year = "1", Semester = "2", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 2 });
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT2030", SubjectName = "OOP", Year = "2", Semester = "1", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 0 });
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1060", SubjectName = "ITP", Year = "1", Semester = "1", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 0 });
+
         }
     }
 }

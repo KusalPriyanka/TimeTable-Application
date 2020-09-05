@@ -40,6 +40,7 @@ namespace TimeTable_App.Global
         public DbSet<GroupsModel> Groups { get; set; }
         public DbSet<GroupIDModel> GroupID { get; set; }
         public DbSet<SubGroupIDModel> SubGroupID { get; set; }
+        public DbSet<RoomsModel> Rooms { get; set; }
         public DbSet<SubjectsFormModel> Subjects { get; set; }
     }
 }
