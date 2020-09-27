@@ -16,14 +16,13 @@ namespace TimeTable_App.Forms.SubForms
         private static LecStatisticsSubForm _instance;
         private FormCtrl formCtrl;
         private int buildingId = 0;
+
         public LecStatisticsSubForm()
         {
             InitializeComponent();
             formCtrl = new FormCtrl();
             initForm();
         }
-
-
 
         private void initForm()
         {
