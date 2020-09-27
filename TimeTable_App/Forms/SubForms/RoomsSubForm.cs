@@ -56,10 +56,12 @@ namespace TimeTable_App.Forms.SubForms
             }
 
             ActionResult TagsResult = formCtrl._getFormData(typeof(TagsModel), "Tags");
+            count = 1;
             if (TagsResult.State)
             {
                 List<TagsModel> tagsList = TagsResult.Data;
-                tagsList.ForEach(tag => comboTag.Items.Insert(tag.TagId, tag.Tag));
+                tagsList.ForEach(tag => comboTag.Items.Insert(count, tag.Tag));
+                ++count;
             }
 
             comboBuilding.SelectedIndex = 0;
