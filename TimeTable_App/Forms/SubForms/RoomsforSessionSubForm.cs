@@ -42,7 +42,7 @@ namespace TimeTable_App.Forms.SubForms
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             comboBox1.Items.Clear();
-            ActionResult SesResult = formCtrl._getFormData(typeof(SessionsSubFormModel), "Sessions");
+            ActionResult SesResult = formCtrl._getFormData(typeof(SessionsSubFormModel), "Session");
             if (SesResult.State)
             {
                 List<SessionsSubFormModel> SesList = SesResult.Data;
@@ -58,12 +58,12 @@ namespace TimeTable_App.Forms.SubForms
             listBox1.Items.Clear();
             listBox2.Items.Clear();
 
-            ActionResult roomsWithLecResult = formCtrl._getFormData(typeof(RoomsforSessionModel), "RoomsforaLecturer");
-            if (roomsWithLecResult.State)
+            ActionResult roomsWithSesResult = formCtrl._getFormData(typeof(RoomsforSessionModel), "RoomsforSession");
+            if (roomsWithSesResult.State)
             {
 
-                List<RoomsforSessionModel> RoomsWithLecModalList = roomsWithLecResult.Data;
-                var SelectedRWTList = RoomsWithLecModalList.Where(RWT => RWT.SessionId.ToString() == comboBox1.SelectedItem.ToString()).ToList();
+                List<RoomsforSessionModel> RoomsWithSesModalList = roomsWithSesResult.Data;
+                var SelectedRWTList = RoomsWithSesModalList.Where(RWT => RWT.SessionId.ToString() == comboBox1.SelectedItem.ToString()).ToList();
                 SelectedRWTList.ForEach(RWT =>
                     listBox2.Items.Add(RWT.Room)
                 );
@@ -94,8 +94,8 @@ namespace TimeTable_App.Forms.SubForms
                     });
                 }
 
-                dataGridView1.DataSource = roomsWithLecResult.Data;
-                dataGridView1.Columns[1].HeaderCell.Value = "Lecturer";
+                dataGridView1.DataSource = roomsWithSesResult.Data;
+                dataGridView1.Columns[1].HeaderCell.Value = "Seesion Id";
                 dataGridView1.Columns[2].HeaderCell.Value = "Room";
                 dataGridView1.Columns[0].Visible = false;
                 dataGridView1.RowHeadersVisible = false;
@@ -110,7 +110,7 @@ namespace TimeTable_App.Forms.SubForms
 
             if (selected is null)
             {
-                MessageBox.Show("Please Select Lecturer", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select Room", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -124,7 +124,7 @@ namespace TimeTable_App.Forms.SubForms
                 if (saveResult.State)
                 {
                     RoomsforSessionModel saveObj = saveResult.Data;
-                    MessageBox.Show("Rooms With Lecturer : " + saveObj.Room + "-" + saveObj.SessionId + " Sucessfully Saved!", "Save Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Rooms With Session : " + saveObj.Room + "-" + saveObj.SessionId + " Sucessfully Saved!", "Save Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     initForm();
                 }
                 else
@@ -138,7 +138,7 @@ namespace TimeTable_App.Forms.SubForms
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            /*var selected = listBox2.SelectedItem;
+            var selected = listBox2.SelectedItem;
 
 
             if (selected is null)
@@ -149,22 +149,22 @@ namespace TimeTable_App.Forms.SubForms
             {
                 int id = 0;
 
-                ActionResult roomsWithLecResult = formCtrl._getFormData(typeof(RoomsforSessionModel), "RoomsforaLecturer");
-                if (roomsWithLecResult.State)
+                ActionResult roomsWithSesResult = formCtrl._getFormData(typeof(RoomsforSessionModel), "RoomsforSession");
+                if (roomsWithSesResult.State)
                 {
 
-                    foreach (RoomsforSessionModel room in roomsWithLecResult.Data)
+                    foreach (RoomsforSessionModel room in roomsWithSesResult.Data)
                     {
-                        if (room.Room == (string)selected && room.Lecturer == comboBox1.SelectedItem.ToString())
+                        if (room.Room == (string)selected && room.SessionId.ToString() == comboBox1.SelectedItem.ToString())
                         {
-                            id = room.RoomWithLectureID;
+                            id = room.RoomWithSessionID;
                         }
                     }
 
                 }
 
 
-                ActionResult deleteResult = formCtrl._deleteFormData(new RoomsforSessionModel() { RoomWithLectureID = id });
+                ActionResult deleteResult = formCtrl._deleteFormData(new RoomsforSessionModel() { RoomWithSessionID = id });
 
                 if (deleteResult.State)
                 {
@@ -176,7 +176,7 @@ namespace TimeTable_App.Forms.SubForms
                 {
                     MessageBox.Show(deleteResult.Data, "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }*/
+            }
         }
 
 
@@ -184,16 +184,6 @@ namespace TimeTable_App.Forms.SubForms
         {
             selectedSec = comboBox1.SelectedIndex;
             updateLecturer();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblCaption_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

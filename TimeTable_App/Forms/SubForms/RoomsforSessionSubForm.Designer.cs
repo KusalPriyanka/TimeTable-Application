@@ -63,7 +63,6 @@
             this.lblCaption.Size = new System.Drawing.Size(254, 30);
             this.lblCaption.TabIndex = 2;
             this.lblCaption.Text = "Rooms With Lecturers";
-            this.lblCaption.Click += new System.EventHandler(this.lblCaption_Click);
             // 
             // listBox1
             // 
@@ -147,7 +146,6 @@
             this.label1.Size = new System.Drawing.Size(90, 21);
             this.label1.TabIndex = 2;
             this.label1.Text = "All Rooms";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
