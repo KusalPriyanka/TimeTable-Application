@@ -125,6 +125,19 @@ namespace TimeTable_App.Forms.SubForms
                 {
                     RoomsforSessionModel saveObj = saveResult.Data;
                     MessageBox.Show("Rooms With Session : " + saveObj.Room + "-" + saveObj.SessionId + " Sucessfully Saved!", "Save Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Added by Dimuthu
+                    int intSelectSessCode = Int32.Parse(comboBox1.SelectedItem.ToString());
+                    string strSelectRoom = (string)selected;
+                    using (var db = new TimeTableDbContext())
+                    {
+                        var tm = db.Sessions.Where(f => f.SessionCode == intSelectSessCode).ToList();
+                        tm.ForEach(a => {
+                            a.Room = strSelectRoom;
+                        });
+                        db.SaveChanges();
+                    }
+
                     initForm();
                 }
                 else
@@ -170,6 +183,19 @@ namespace TimeTable_App.Forms.SubForms
                 {
                     RoomsforSessionModel deleteObj = deleteResult.Data;
                     MessageBox.Show("Room " + (string)selected + " Sucessfully Deleted!", "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Added by Dimuthu
+                    int intSelectSessCode = Int32.Parse(comboBox1.SelectedItem.ToString());
+                    string strSelectRoom = (string)selected;
+                    using (var db = new TimeTableDbContext())
+                    {
+                        var tm = db.Sessions.Where(f => f.SessionCode == intSelectSessCode).ToList();
+                        tm.ForEach(a => {
+                            a.Room = "";
+                        });
+                        db.SaveChanges();
+                    }
+
                     initForm();
                 }
                 else
