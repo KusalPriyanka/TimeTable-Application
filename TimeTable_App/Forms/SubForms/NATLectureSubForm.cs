@@ -293,7 +293,7 @@ namespace TimeTable_App.Forms.SubForms
                 if (LectureResult.State)
                 {
                     List<LecturersFormModel> vList = LectureResult.Data;
-                    vList.ForEach(detail => valueList.Add(detail.EmployeeId + " - " + detail.EmployeeName));
+                    vList.ForEach(detail => valueList.Add(detail.EmployeeName));
 
                 }
             }else if (value == "Session")
