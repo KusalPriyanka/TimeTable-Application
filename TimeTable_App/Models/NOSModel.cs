@@ -7,7 +7,7 @@ using TimeTable_App.Global;
 
 namespace TimeTable_App.Models
 {
-    public class ConsectiveSessionsModel
+    public class NOSModel
     {
         [Key]
         public int Id { get; set; }
@@ -18,17 +18,9 @@ namespace TimeTable_App.Models
         [MaxLength(50)]
         public string Semester { get; set; }
         [Required]
-        [MaxLength(50)]
-        public string Subject { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Lecture { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Tutorial { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string Lab { get; set; }
+        public int SessionID { get; set; }
+        
+
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
@@ -37,13 +29,13 @@ namespace TimeTable_App.Models
             {
                 return _dbContext.ASY.AsNoTracking().ToList();
             }
-            else if (type == "Subjects")
+            else if (type == "Sessions")
             {
-                return _dbContext.Subjects.AsNoTracking().ToList();
+                return _dbContext.Sessions.AsNoTracking().ToList();
             }
-            else if (type == "ConsectiveSessions")
+            else if (type == "NOS")
             {
-                return _dbContext.ConsectiveSessions.AsNoTracking().ToList();
+                return _dbContext.NOS.AsNoTracking().ToList();
             }
             return null;
         }

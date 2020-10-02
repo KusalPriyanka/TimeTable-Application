@@ -45,6 +45,7 @@ namespace TimeTable_App.Models
         public int NoOfStudent { get; set; }
         [Required]
         public int Duration { get; set; }
+        
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {

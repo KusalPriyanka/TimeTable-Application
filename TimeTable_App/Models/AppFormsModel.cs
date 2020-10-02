@@ -22,13 +22,13 @@ namespace TimeTable_App.Models
         [Key]
         public int FormId { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string FormName { get; set; }
         [Required]
         [MaxLength(100)]
         public string FormDesc { get; set; }
         [Required]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string FormController { get; set; }
         [Required]
         [MaxLength(1)]
