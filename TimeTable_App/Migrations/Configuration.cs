@@ -52,6 +52,8 @@
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Parallel Sessions", SubFormDesc = "Parallel Sessions", SubFormController = "ParallelSessionsSubForm", Status = "A", FormId = 8 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sessions", SubFormDesc = "Sessions", SubFormController = "SessionsSubForm", Status = "A", FormId = 8 });
 
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Timetable", SubFormDesc = "Timetable", SubFormController = "TimetableSubForm", Status = "A", FormId = 8 });
+
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
             context.Faculties.Add(new FacultyModel() { FacultyName = "Engineering", FacultyDesc = "Engineering Faculty" });
