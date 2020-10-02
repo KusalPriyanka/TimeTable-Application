@@ -40,6 +40,7 @@ namespace TimeTable_App.Forms.SubForms
         //Global variables
         bool booConflict = false;
         int intTblNewRecord = 0;
+        string strTableType = "";
 
         public static TimetableSubForm Instance
         {
@@ -89,6 +90,7 @@ namespace TimeTable_App.Forms.SubForms
         public void initialState_TimeTable(string weekType) 
         {
             intTblNewRecord = 0;
+            strTableType = "";
 
             ActionResult timeTableResult = formCtrl._getFormData(typeof(TimetableSubFormModel), "TimeTable");
             List<TimetableSubFormModel> timeTableList = timeTableResult.Data;
@@ -543,6 +545,7 @@ namespace TimeTable_App.Forms.SubForms
 
                     if (allSessionList.Count != 0)
                     {
+                        strTableType = textBox1.Text;
                         //var session = allSessionList.Where(x => x.Lecturers == textBox1.Text).ToList();
 
                         foreach (var s in allSessionList)
@@ -605,14 +608,15 @@ namespace TimeTable_App.Forms.SubForms
                                         {
                                             t = "0" + list;
                                         }
-                                        //else////////////////////////////////////////////////////////////////////////////
-                                        //{
-                                        //    t = list + "0";
-                                        //}
+                                        else
+                                        {
+                                            t = list;
+                                        }
 
                                         if (s.Time.Equals(list))
                                         {
-                                            var details = s.Room + ", " + s.SubjectName + ", " + s.GroupId;
+                                            var details =  s.SubjectCode+"-" + s.SubjectName+ " ("+s.Tags+") , "+
+                                                s.GroupId + ", "+ s.Room;
 
                                             using (var db = new TimeTableDbContext())
                                             {
@@ -722,6 +726,8 @@ namespace TimeTable_App.Forms.SubForms
 
                     if (allSessionList.Count != 0)
                     {
+                        strTableType = textBox1.Text;
+
                         var session = allSessionList.Where(x => x.GroupId == textBox1.Text).ToList();
 
                         foreach (var s in session)
@@ -778,14 +784,16 @@ namespace TimeTable_App.Forms.SubForms
                                 {
                                     t = "0" + list;
                                 }
-                                //else
-                                //{
-                                //    t = list + "0";
-                                //}
+                                else
+                                {
+                                    t = list;
+                                }
 
                                 if (s.Time.Equals(list))
                                 {
-                                    var details = s.Room + ", " + s.SubjectName + ", " + s.LecturersList;
+                                    var details = s.GroupId+", "+
+                                        s.SubjectCode+"-"+s.SubjectName+ " ("+s.Tags+") , "+
+                                        s.LecturersList + ", " + s.Room ;
 
                                     using (var db = new TimeTableDbContext())
                                     {
@@ -890,6 +898,8 @@ namespace TimeTable_App.Forms.SubForms
 
                     if (allSessionList.Count != 0)
                     {
+                        strTableType = textBox1.Text;
+
                         var session = allSessionList.Where(x => x.Room == textBox1.Text).ToList();
 
                         foreach (var s in session)
@@ -945,14 +955,16 @@ namespace TimeTable_App.Forms.SubForms
                                 {
                                     t = "0" + list;
                                 }
-                                //else
-                                //{
-                                //    t = list + "0";
-                                //}
+                                else
+                                {
+                                    t = list;
+                                }
 
                                 if (s.Time.Equals(list))
                                 {
-                                    var details = s.Room + ", " + s.SubjectName + ", " + s.LecturersList;
+                                    //var details = s.Room + ", " + s.SubjectName + ", " + s.LecturersList;
+                                    var details = s.SubjectCode + "-" + s.SubjectName + " (" + s.Tags + ") , " +
+                                        s.LecturersList + ", " + s.GroupId;
 
                                     using (var db = new TimeTableDbContext())
                                     {
@@ -1092,25 +1104,19 @@ namespace TimeTable_App.Forms.SubForms
                                 using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
                                 {
 
-                                    Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
+                                    Document pdfDoc = new Document(PageSize.A3, 10f, 10f, 20f, 20f);
                                     PdfWriter.GetInstance(pdfDoc, stream);
                                     pdfDoc.Open();
 
-                                    //pdfDoc.Add(new Paragraph("Timetable"));
                                     Paragraph lineBr = new Paragraph("");
-                                    //Paragraph headline = new Paragraph("Timetable");
-                                    //headline.Font = new iTextSharp.text.Font(FontFactory.GetFont("Arial", 15, iTextSharp.text.Font.BOLD));
-                                    //headline.Alignment = Element.ALIGN_CENTER;
-                                    //pdfDoc.Add(headline);
 
                                     var boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
                                     var phrase = new Phrase();
-                                    phrase.Add(new Chunk("TIME TABLE", boldFont));
+                                    phrase.Add(new Chunk("TIME TABLE - "+ strTableType, boldFont));
                                     pdfDoc.Add(phrase);
                                     pdfDoc.Add(lineBr);
 
                                     Chunk linebreak = new Chunk(new LineSeparator());
-                                    //Chunk linebreak = new Chunk(new DottedLineSeparator());
                                     pdfDoc.Add(linebreak);
 
 
