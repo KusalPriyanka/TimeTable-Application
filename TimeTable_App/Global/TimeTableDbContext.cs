@@ -44,5 +44,10 @@ namespace TimeTable_App.Global
         public DbSet<SubGroupIDModel> SubGroupID { get; set; }
         public DbSet<RoomsModel> Rooms { get; set; }
         public DbSet<SubjectsFormModel> Subjects { get; set; }
+        public DbSet<NATLectureModel> NATLecture { get; set; }
+        public DbSet<RoomsforTimeNotReservedModel> RoomsforTimeNotReserved { get; set; }
+        public DbSet<ConsectiveSessionsModel> ConsectiveSessions { get; set; }
+        public DbSet<SessionsSubFormModel> Sessions { get; set; }
+        public DbSet<NOSModel> NOS { get; set; }
     }
 }

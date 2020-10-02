@@ -11,21 +11,21 @@ using System.Linq;
 
 namespace TimeTable_App.Forms.SubForms
 {
-    public partial class SubGroupIDSubForm : UserControl
+    public partial class NOSSubForm : UserControl
     {
-        private static SubGroupIDSubForm _instance;
+        private static NOSSubForm _instance;
         private FormCtrl formCtrl;
         private int ID = 0;
 
-        public static SubGroupIDSubForm Instance
+        public static NOSSubForm Instance
         {
             get
             {
-                if (_instance == null) _instance = new SubGroupIDSubForm();
+                if (_instance == null) _instance = new NOSSubForm();
                 return _instance;
             }
         }
-        public SubGroupIDSubForm()
+        public NOSSubForm()
         {
             InitializeComponent();
             formCtrl = new FormCtrl();
@@ -40,14 +40,12 @@ namespace TimeTable_App.Forms.SubForms
             ID = 0;
             comboYear.Items.Clear();
             comboSemester.Items.Clear();
-            comboProgramme.Items.Clear();
-            comboGroup.Items.Clear();
-            txtSubGroup.Text = string.Empty;
+            comboSesssion.Items.Clear();
+            
 
             comboYear.Items.Insert(0, "Select Year");
             comboSemester.Items.Insert(0, "Select Semester");
-            comboProgramme.Items.Insert(0, "Select Programme");
-            comboGroup.Items.Insert(0, "Select Group");
+            comboSesssion.Items.Insert(0, "Select Session");
 
             ActionResult ASYResult = formCtrl._getFormData(typeof(ASYModel), "ASY");
             if (ASYResult.State)
@@ -64,23 +62,13 @@ namespace TimeTable_App.Forms.SubForms
                 });
             }
 
-            int proCount = 1;
-            ActionResult programmeResult = formCtrl._getFormData(typeof(ProgrammeModel), "Programme");
-            if (programmeResult.State)
-            {
-                List<ProgrammeModel> programmeList = programmeResult.Data;
-                programmeList.ForEach(pro => comboProgramme.Items.Insert(proCount, pro.Programme));
-                ++proCount;
-            }
+           
 
             comboYear.SelectedIndex = 0;
             comboSemester.SelectedIndex = 0;
-            comboProgramme.SelectedIndex = 0;
-            comboGroup.SelectedIndex = 0;
+            comboSesssion.SelectedIndex = 0;
             comboSemester.Enabled = false;
-            comboProgramme.Enabled = false;
-            comboGroup.Enabled = false;
-            txtSubGroup.Enabled = false;
+            comboSesssion.Enabled = false;
 
             btnInsert.Enabled = true;
             btnCansel.Enabled = true;
@@ -89,19 +77,16 @@ namespace TimeTable_App.Forms.SubForms
 
 
 
-            ActionResult groupResult = formCtrl._getFormData(typeof(SubGroupIDModel), "SubGroupID");
-            if (groupResult.State)
+            ActionResult NOSResult = formCtrl._getFormData(typeof(NOSModel), "NOS");
+            if (NOSResult.State)
             {
 
 
-                gridGroupDetails.DataSource = groupResult.Data;
+                gridGroupDetails.DataSource = NOSResult.Data;
 
                 gridGroupDetails.Columns[1].HeaderCell.Value = "Year";
                 gridGroupDetails.Columns[2].HeaderCell.Value = "Semester";
-                gridGroupDetails.Columns[3].HeaderCell.Value = "Programme";
-                gridGroupDetails.Columns[4].HeaderCell.Value = "Group";
-                gridGroupDetails.Columns[5].HeaderCell.Value = "Sub Group";
-                gridGroupDetails.Columns[6].HeaderCell.Value = "Sub Group ID";
+                gridGroupDetails.Columns[3].HeaderCell.Value = "Session";
 
                 gridGroupDetails.Columns[0].Visible = false;
 
@@ -121,14 +106,8 @@ namespace TimeTable_App.Forms.SubForms
                     comboSemester.Items.Insert(0, "Select Semester");
 
 
-                    comboProgramme.Items.Clear();
-                    comboProgramme.Items.Insert(0, "Select Programme");
-                    
-                    comboGroup.Items.Clear();
-                    comboGroup.Items.Insert(0, "Select Group");
-
-                    txtSubGroup.Text = string.Empty;
-
+                    comboSesssion.Items.Clear();
+                    comboSesssion.Items.Insert(0, "Select Session");
 
 
                     List<ASYModel> ASYList = ASYResult.Data;
@@ -142,13 +121,10 @@ namespace TimeTable_App.Forms.SubForms
                     );
 
                     comboSemester.SelectedIndex = 0;
-                    comboProgramme.SelectedIndex = 0;
-                    comboGroup.SelectedIndex = 0;
+                    comboSesssion.SelectedIndex = 0;
 
                     comboSemester.Enabled = true;
-                    comboProgramme.Enabled = false;
-                    comboGroup.Enabled = false;
-                    txtSubGroup.Enabled = false;
+                    comboSesssion.Enabled = false;
                 }
             }
         }
@@ -161,14 +137,32 @@ namespace TimeTable_App.Forms.SubForms
                 if (GroupsResult.State)
                 {
 
-                    comboProgramme.Items.Clear();
-                    comboProgramme.Items.Insert(0, "Select Programme");
+                    comboSesssion.Items.Clear();
+                    comboSesssion.Items.Insert(0, "Select Session");
 
-                    comboGroup.Items.Clear();
-                    comboGroup.Items.Insert(0, "Select Group");
+                    ActionResult subjectsResult = formCtrl._getFormData(typeof(SubjectsFormModel), "Subjects");
+                    if (subjectsResult.State)
+                    {
+                        List<SubjectsFormModel> SubList = subjectsResult.Data;
 
-                    txtSubGroup.Text = string.Empty;
+                        ActionResult NOSResult = formCtrl._getFormData(typeof(NOSModel), "NOS");
+                        if (NOSResult.State)
+                        {
 
+
+                            gridGroupDetails.DataSource = NOSResult.Data;
+
+                            gridGroupDetails.Columns[1].HeaderCell.Value = "Year";
+                            gridGroupDetails.Columns[2].HeaderCell.Value = "Semester";
+                            gridGroupDetails.Columns[3].HeaderCell.Value = "Session";
+
+                            gridGroupDetails.Columns[0].Visible = false;
+
+                            gridGroupDetails.RowHeadersVisible = false;
+
+                        }
+
+                    }
 
 
 
@@ -177,65 +171,20 @@ namespace TimeTable_App.Forms.SubForms
                     int count = 1;
                     SelectedYAndSList.ForEach(grp =>
                     {
-                        comboProgramme.Items.Insert(count, grp.Programme);
+                        comboSesssion.Items.Insert(count, grp.Programme);
                         ++count;
                     }
                     );
 
-                    comboProgramme.SelectedIndex = 0;
-                    comboGroup.SelectedIndex = 0;
+                    comboSesssion.SelectedIndex = 0;
 
                     comboSemester.Enabled = true;
-                    comboProgramme.Enabled = true;
-                    comboGroup.Enabled = false;
-                    txtSubGroup.Enabled = false;
+                    comboSesssion.Enabled = true;
                 }
             }
         }
 
-        private void comboProgramme_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboYear.SelectedIndex != 0)
-            {
-                ActionResult GroupsResult = formCtrl._getFormData(typeof(GroupIDModel), "GroupID");
-                if (GroupsResult.State)
-                {
 
-                   
-
-                    comboGroup.Items.Clear();
-                    comboGroup.Items.Insert(0, "Select Group");
-
-                    txtSubGroup.Text = string.Empty;
-
-
-
-
-                    List<GroupIDModel> GroupsList = GroupsResult.Data;
-                    var SelectedYAndSList = GroupsList.Where(grp => grp.Year == comboYear.SelectedItem.ToString() && grp.Semester == comboSemester.SelectedItem.ToString() && grp.Programme == comboProgramme.SelectedItem.ToString()).ToList();
-                    int count = 1;
-                    SelectedYAndSList.ForEach(grp =>
-                    {
-                        comboGroup.Items.Insert(count, grp.GroupID);
-                        ++count;
-                    }
-                    );
-
-                  
-                    comboGroup.SelectedIndex = 0;
-
-                    
-                    comboGroup.Enabled = true;
-                    txtSubGroup.Enabled = false;
-                }
-            }
-        }
-
-        private void comboGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtSubGroup.Text = string.Empty;
-            txtSubGroup.Enabled = true;
-        }
 
         private void gridGroupDetails_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -245,9 +194,7 @@ namespace TimeTable_App.Forms.SubForms
                 ID = Int32.Parse(selectedRow.Cells[0].Value.ToString());
                 comboYear.SelectedIndex = comboYear.FindStringExact(selectedRow.Cells[1].Value.ToString());
                 comboSemester.SelectedIndex = comboSemester.FindStringExact(selectedRow.Cells[2].Value.ToString());
-                comboProgramme.SelectedIndex = comboProgramme.FindStringExact(selectedRow.Cells[3].Value.ToString());
-                comboGroup.SelectedIndex = comboGroup.FindStringExact(selectedRow.Cells[4].Value.ToString());
-                txtSubGroup.Text = selectedRow.Cells[5].Value.ToString();
+                comboSesssion.SelectedIndex = comboSesssion.FindStringExact(selectedRow.Cells[3].Value.ToString());
 
                 btnInsert.Enabled = false;
                 btnUpdate.Enabled = true;
@@ -274,20 +221,10 @@ namespace TimeTable_App.Forms.SubForms
                 MessageBox.Show("Please Select Year!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSemester.Focus();
             }
-            else if (comboProgramme.SelectedIndex == 0)
+            else if (comboSesssion.SelectedIndex == 0)
             {
                 MessageBox.Show("Please Select Programme!If Year List Empty Please Add Programmes", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboProgramme.Focus();
-            }
-            else if (comboGroup.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Group!If Year List Empty Please Add Groups", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboGroup.Focus();
-            }
-            else if (string.IsNullOrEmpty(txtSubGroup.Text))
-            {
-                MessageBox.Show("Please Select Enter Sub Group!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboGroup.Focus();
+                comboSesssion.Focus();
             }
 
             else
@@ -296,10 +233,7 @@ namespace TimeTable_App.Forms.SubForms
                 {
                     Year = comboYear.SelectedItem.ToString(),
                     Semester = comboSemester.SelectedItem.ToString(),
-                    Programme = comboProgramme.SelectedItem.ToString(),
-                    Group = comboGroup.SelectedItem.ToString(),
-                    SubGroup = Int32.Parse(txtSubGroup.Text.Trim()),
-                    SubGroupID = comboGroup.SelectedItem.ToString() + "." + txtSubGroup.Text.Trim()
+                    Programme = comboSesssion.SelectedItem.ToString(),
 
                 });
 
@@ -355,20 +289,10 @@ namespace TimeTable_App.Forms.SubForms
                 MessageBox.Show("Please Select Year!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSemester.Focus();
             }
-            else if (comboProgramme.SelectedIndex == 0)
+            else if (comboSesssion.SelectedIndex == 0)
             {
                 MessageBox.Show("Please Select Programme!If Year List Empty Please Add Programmes", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboProgramme.Focus();
-            }
-            else if (comboGroup.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please Select Group!If Year List Empty Please Add Groups", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboGroup.Focus();
-            }
-            else if (string.IsNullOrEmpty(txtSubGroup.Text))
-            {
-                MessageBox.Show("Please Select Enter Sub Group!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                comboGroup.Focus();
+                comboSesssion.Focus();
             }
             else
             {
@@ -378,10 +302,7 @@ namespace TimeTable_App.Forms.SubForms
                     Id = ID,
                     Year = comboYear.SelectedItem.ToString(),
                     Semester = comboSemester.SelectedItem.ToString(),
-                    Programme = comboProgramme.SelectedItem.ToString(),
-                    Group = comboGroup.SelectedItem.ToString(),
-                    SubGroup = Int32.Parse(txtSubGroup.Text.Trim()),
-                    SubGroupID = comboGroup.SelectedItem.ToString() + "." + txtSubGroup.Text.Trim()
+                    Programme = comboSesssion.SelectedItem.ToString(),
                 });
 
                 if (updateResult.State)

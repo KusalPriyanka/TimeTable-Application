@@ -39,6 +39,11 @@
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Working Days", SubFormDesc = "Working Days", SubFormController = "WorkingDaySubForm", Status = "A", FormId = 7 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Time Slots", SubFormDesc = "Time Slots", SubFormController = "TimeSlotSubForm", Status = "A", FormId = 7 });
 
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Not Available Time Of Lecturer", SubFormDesc = "Not Available Time Of Lecturer", SubFormController = "NATLectureSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Consective Sessions", SubFormDesc = "Consective Sessions", SubFormController = "ConsectiveSessionsSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Not Overlap Sessions", SubFormDesc = "Not Overlap Sessions", SubFormController = "NOSSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Parallel Sessions", SubFormDesc = "Parallel Sessions", SubFormController = "ParallelSessionsSubForm", Status = "A", FormId = 8 });
+
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
             context.Faculties.Add(new FacultyModel() { FacultyName = "Engineering", FacultyDesc = "Engineering Faculty" });
@@ -77,6 +82,13 @@
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Friday", WorkHourPerDay = 0, status = "I" });
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Saturday", WorkHourPerDay = 0, status = "I" });
 
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1010", SubjectName = "IP", Year = "Y1", Semester = "S1", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 0 });
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1020", SubjectName = "SPM", Year = "Y1", Semester = "S2", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 2 });
+            
+
+            
+            
+        
         }
     }
 }
