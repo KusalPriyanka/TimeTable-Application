@@ -131,7 +131,7 @@ namespace TimeTable_App.Forms.SubForms
 
         private void comboSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboYear.SelectedIndex != 0)
+            if (comboSemester.SelectedIndex != 0)
             {
                 ActionResult GroupsResult = formCtrl._getFormData(typeof(GroupIDModel), "GroupID");
                 if (GroupsResult.State)
@@ -145,36 +145,33 @@ namespace TimeTable_App.Forms.SubForms
                     {
                         List<SubjectsFormModel> SubList = subjectsResult.Data;
 
-                        ActionResult NOSResult = formCtrl._getFormData(typeof(NOSModel), "NOS");
-                        if (NOSResult.State)
+                        List<SessionsSubFormModel> SelectedSesList = new List<SessionsSubFormModel>();
+
+                        ActionResult SesResult = formCtrl._getFormData(typeof(SessionsSubFormModel), "Session");
+                        if (SesResult.State)
                         {
-
-
-                            gridGroupDetails.DataSource = NOSResult.Data;
-
-                            gridGroupDetails.Columns[1].HeaderCell.Value = "Year";
-                            gridGroupDetails.Columns[2].HeaderCell.Value = "Semester";
-                            gridGroupDetails.Columns[3].HeaderCell.Value = "Session";
-
-                            gridGroupDetails.Columns[0].Visible = false;
-
-                            gridGroupDetails.RowHeadersVisible = false;
-
+                            List<SessionsSubFormModel> SesList = SesResult.Data;
+                            SesList.ForEach(ses => {
+                                SubList.ForEach(sub => {
+                                    if (sub.SubjectCode == ses.SubjectCode) {
+                                        if (sub.Year == comboYear.SelectedItem.ToString() && sub.Semester == comboSemester.SelectedItem.ToString()) {
+                                            SelectedSesList.Add(ses);
+                                        }
+                                    }
+                                });
+                            });
                         }
 
+                        int sesCount = 1;
+                        SelectedSesList.ForEach(ses => {
+                            comboSesssion.Items.Insert(sesCount, ses.SessionCode);
+                            sesCount++;
+                        });
+
+                        
+
                     }
 
-
-
-                    List<GroupIDModel> GroupsList = GroupsResult.Data;
-                    var SelectedYAndSList = GroupsList.Where(grp => grp.Year == comboYear.SelectedItem.ToString() && grp.Semester == comboSemester.SelectedItem.ToString()).ToList();
-                    int count = 1;
-                    SelectedYAndSList.ForEach(grp =>
-                    {
-                        comboSesssion.Items.Insert(count, grp.Programme);
-                        ++count;
-                    }
-                    );
 
                     comboSesssion.SelectedIndex = 0;
 
@@ -218,29 +215,29 @@ namespace TimeTable_App.Forms.SubForms
             }
             else if (comboSemester.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select Year!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select Semester!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSemester.Focus();
             }
             else if (comboSesssion.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select Programme!If Year List Empty Please Add Programmes", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select Session!If Session List Empty Please Add Sessions", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSesssion.Focus();
             }
 
             else
             {
-                ActionResult saveResult = formCtrl._saveFormData(new SubGroupIDModel()
+                ActionResult saveResult = formCtrl._saveFormData(new NOSModel()
                 {
                     Year = comboYear.SelectedItem.ToString(),
                     Semester = comboSemester.SelectedItem.ToString(),
-                    Programme = comboSesssion.SelectedItem.ToString(),
+                    SessionID = Int32.Parse(comboSesssion.SelectedItem.ToString()),
 
                 });
 
                 if (saveResult.State)
                 {
-                    SubGroupIDModel saveObj = saveResult.Data;
-                    MessageBox.Show("Sub Group ID " + saveObj.SubGroupID + " Sucessfully Saved!", "Save Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    NOSModel saveObj = saveResult.Data;
+                    MessageBox.Show("Not Overlap Session Sucessfully Saved!", "Save Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     initForm();
                 }
                 else
@@ -255,17 +252,17 @@ namespace TimeTable_App.Forms.SubForms
         {
             if (ID == 0)
             {
-                MessageBox.Show("Please select Sub Group Id first!", "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select Not OverLap Session first!", "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 initForm();
             }
             else
             {
-                ActionResult deleteResult = formCtrl._deleteFormData(new SubGroupIDModel() { Id = ID });
+                ActionResult deleteResult = formCtrl._deleteFormData(new NOSModel() { Id = ID });
 
                 if (deleteResult.State)
                 {
-                    SubGroupIDModel deleteObj = deleteResult.Data;
-                    MessageBox.Show("Sub Group ID " + deleteObj.SubGroupID + " Sucessfully Deleted!", "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    NOSModel deleteObj = deleteResult.Data;
+                    MessageBox.Show("Not Overlap Session Sucessfully Deleted!", "Delete Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     initForm();
                 }
                 else
@@ -286,29 +283,29 @@ namespace TimeTable_App.Forms.SubForms
             }
             else if (comboSemester.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select Year!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select Semester!If Year List Empty Please Add Academic Year And Semster", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSemester.Focus();
             }
             else if (comboSesssion.SelectedIndex == 0)
             {
-                MessageBox.Show("Please Select Programme!If Year List Empty Please Add Programmes", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Select Session!If Session List Empty Please Add Sessions", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboSesssion.Focus();
             }
             else
             {
 
-                ActionResult updateResult = formCtrl._updateFormData(new SubGroupIDModel()
+                ActionResult updateResult = formCtrl._updateFormData(new NOSModel()
                 {
                     Id = ID,
                     Year = comboYear.SelectedItem.ToString(),
                     Semester = comboSemester.SelectedItem.ToString(),
-                    Programme = comboSesssion.SelectedItem.ToString(),
+                    SessionID = Int32.Parse(comboSesssion.SelectedItem.ToString())
                 });
 
                 if (updateResult.State)
                 {
-                    SubGroupIDModel updateObj = updateResult.Data;
-                    MessageBox.Show("Sub Group ID " + updateObj.SubGroupID + " Sucessfully Updated!", "Update Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    NOSModel updateObj = updateResult.Data;
+                    MessageBox.Show("Not Overlap Session Sucessfully Updated!", "Update Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     initForm();
                 }
                 else
