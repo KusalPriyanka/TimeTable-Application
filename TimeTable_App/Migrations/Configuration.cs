@@ -9,7 +9,6 @@
 
     public class Configuration : DropCreateDatabaseIfModelChanges<TimeTableDbContext>
     {
-
         protected override void Seed(TimeTable_App.Global.TimeTableDbContext context)
         {
             // Adding Forms
@@ -38,6 +37,8 @@
 
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Working Days", SubFormDesc = "Working Days", SubFormController = "WorkingDaySubForm", Status = "A", FormId = 7 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Time Slots", SubFormDesc = "Time Slots", SubFormController = "TimeSlotSubForm", Status = "A", FormId = 7 });
+
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sessions", SubFormDesc = "Sessions", SubFormController = "SessionsSubForm", Status = "A", FormId = 8 });
 
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
