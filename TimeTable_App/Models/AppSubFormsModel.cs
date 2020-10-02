@@ -22,13 +22,13 @@ namespace TimeTable_App.Models
         [Key]
         public int SubFormId { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string SubFormName { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string SubFormDesc { get; set; }
         [Required]
-        [MaxLength(100)]
+        [MaxLength(200)]
         public string SubFormController { get; set; }
         [Required]
         [MaxLength(1)]

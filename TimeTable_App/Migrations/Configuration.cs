@@ -9,7 +9,6 @@
 
     public class Configuration : DropCreateDatabaseIfModelChanges<TimeTableDbContext>
     {
-
         protected override void Seed(TimeTable_App.Global.TimeTableDbContext context)
         {
             // Adding Forms
@@ -29,6 +28,14 @@
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Group ID", SubFormDesc = "Manage Group ID", SubFormController = "GroupIDSubForm", Status = "A", FormId = 3 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sub Group ID", SubFormDesc = "Manage Sub Group ID", SubFormController = "SubGroupIDSubForm", Status = "A", FormId = 3 });
 
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms With Tags", SubFormDesc = "Rooms With Tags", SubFormController = "RoomsWithTagsSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Subject", SubFormDesc = "Rooms for a Subject", SubFormController = "RoomsForASubjectSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Lecturer", SubFormDesc = "Rooms for a Lecturer", SubFormController = "RoomsforaLecturerSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a SubGroup", SubFormDesc = "Rooms for a SubGroup", SubFormController = "RoomsforaSubGroupSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Time Not Reserved", SubFormDesc = "Rooms for a Time Not Reserved", SubFormController = "RoomsforTimeNotReservedSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for Consective Session", SubFormDesc = "Rooms for Consective Session", SubFormController = "RoomsforConsectiveSessionSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for Session", SubFormDesc = "RoomsforSession", SubFormController = "RoomsforSessionSubForm", Status = "A", FormId = 8 });
+
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Buildings", SubFormDesc = "Manage Buildings", SubFormController = "BuildingsSubForm", Status = "A", FormId = 5 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms", SubFormDesc = "Manage Rooms", SubFormController = "RoomsSubForm", Status = "A", FormId = 5 });
 
@@ -38,11 +45,12 @@
 
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Working Days", SubFormDesc = "Working Days", SubFormController = "WorkingDaySubForm", Status = "A", FormId = 7 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Time Slots", SubFormDesc = "Time Slots", SubFormController = "TimeSlotSubForm", Status = "A", FormId = 7 });
-
+            
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Not Available Time Of Lecturer", SubFormDesc = "Not Available Time Of Lecturer", SubFormController = "NATLectureSubForm", Status = "A", FormId = 8 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Consective Sessions", SubFormDesc = "Consective Sessions", SubFormController = "ConsectiveSessionsSubForm", Status = "A", FormId = 8 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Not Overlap Sessions", SubFormDesc = "Not Overlap Sessions", SubFormController = "NOSSubForm", Status = "A", FormId = 8 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Parallel Sessions", SubFormDesc = "Parallel Sessions", SubFormController = "ParallelSessionsSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sessions", SubFormDesc = "Sessions", SubFormController = "SessionsSubForm", Status = "A", FormId = 8 });
 
             // Adding Faculties [Kusal Perera]
             context.Faculties.Add(new FacultyModel() { FacultyName = "Computing", FacultyDesc = "Computing Faculty" });
@@ -82,13 +90,12 @@
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Friday", WorkHourPerDay = 0, status = "I" });
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Saturday", WorkHourPerDay = 0, status = "I" });
 
+            // Adding Subjects
             context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1010", SubjectName = "IP", Year = "Y1", Semester = "S1", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 0 });
-            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1020", SubjectName = "SPM", Year = "Y1", Semester = "S2", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 2 });
+            context.Subjects.Add(new SubjectsFormModel() { SubjectCode = "IT1020", SubjectName = "SPM", Year = "Y1", Semester = "S2", LectureHours = 2, LabHours = 0, TuteHours = 2, EvaluationHours = 2 });          
             
-
-            
-            
-        
+            // Adding Consective Sessions
+            context.ConsectiveSessions.Add(new ConsectiveSessionsModel() { Year = "Y1", Semester = "S1", Subject="OOP",Lecture= "YES", Tutorial="YES", Lab ="NO" });
         }
     }
 }
