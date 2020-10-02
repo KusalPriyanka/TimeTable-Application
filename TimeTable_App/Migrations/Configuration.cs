@@ -29,6 +29,14 @@
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Group ID", SubFormDesc = "Manage Group ID", SubFormController = "GroupIDSubForm", Status = "A", FormId = 3 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Sub Group ID", SubFormDesc = "Manage Sub Group ID", SubFormController = "SubGroupIDSubForm", Status = "A", FormId = 3 });
 
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms With Tags", SubFormDesc = "Rooms With Tags", SubFormController = "RoomsWithTagsSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Subject", SubFormDesc = "Rooms for a Subject", SubFormController = "RoomsForASubjectSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Lecturer", SubFormDesc = "Rooms for a Lecturer", SubFormController = "RoomsforaLecturerSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a SubGroup", SubFormDesc = "Rooms for a SubGroup", SubFormController = "RoomsforaSubGroupSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for a Time Not Reserved", SubFormDesc = "Rooms for a Time Not Reserved", SubFormController = "RoomsforTimeNotReservedSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for Consective Session", SubFormDesc = "Rooms for Consective Session", SubFormController = "RoomsforConsectiveSessionSubForm", Status = "A", FormId = 8 });
+            context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms for Session", SubFormDesc = "RoomsforSession", SubFormController = "RoomsforSessionSubForm", Status = "A", FormId = 8 });
+
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Buildings", SubFormDesc = "Manage Buildings", SubFormController = "BuildingsSubForm", Status = "A", FormId = 5 });
             context.AppSubForms.Add(new AppSubFormsModel() { SubFormName = "Rooms", SubFormDesc = "Manage Rooms", SubFormController = "RoomsSubForm", Status = "A", FormId = 5 });
 
@@ -76,6 +84,9 @@
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Thursday", WorkHourPerDay = 0, status = "I" });
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Friday", WorkHourPerDay = 0, status = "I" });
             context.WorkingDays.Add(new WorkingDaySubFormModel() { StrWorkingDays = "Saturday", WorkHourPerDay = 0, status = "I" });
+
+
+            context.ConsectiveSessions.Add(new ConsectiveSessionsModel() { Year = "Y1", Semester = "S1", Subject="OOP",Lecture= "YES", Tutorial="YES", Lab ="NO" });
 
         }
     }

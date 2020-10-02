@@ -34,13 +34,7 @@ namespace TimeTable_App.Models
         [MaxLength(50)]
         public string Tags { get; set; }
         [Required]
-        [MaxLength(200)]
-        public string TagsList { get; set; }
-        [Required]
-        public int GroupId { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string GroupName { get; set; }
+        public string GroupId { get; set; }
         [Required]
         [MaxLength(50)]
         public string SubjectCode { get; set; }
@@ -52,7 +46,7 @@ namespace TimeTable_App.Models
         [Required]
         public int Duration { get; set; }
 
-        public dynamic GetFormData(TimeTableDbContext _dbContext, string type) 
+        public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
             if (type == "Lecturers")
             {
@@ -73,6 +67,10 @@ namespace TimeTable_App.Models
             else if (type == "Subject")
             {
                 return _dbContext.Subjects.ToList();
+            }
+            else if (type == "Session")
+            {
+                return _dbContext.Sessions.ToList();
             }
 
             return null;
