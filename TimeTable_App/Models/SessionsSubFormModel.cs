@@ -46,7 +46,7 @@ namespace TimeTable_App.Models
         [Required]
         public int Duration { get; set; }
 
-        public dynamic GetFormData(TimeTableDbContext _dbContext, string type) 
+        public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
             if (type == "Lecturers")
             {
