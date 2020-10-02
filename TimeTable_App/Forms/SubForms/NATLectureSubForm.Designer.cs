@@ -94,11 +94,11 @@
             // 
             this.lblCaption.AutoSize = true;
             this.lblCaption.Font = new System.Drawing.Font("Segoe UI Black", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCaption.Location = new System.Drawing.Point(381, 11);
+            this.lblCaption.Location = new System.Drawing.Point(334, 16);
             this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(88, 30);
+            this.lblCaption.Size = new System.Drawing.Size(232, 30);
             this.lblCaption.TabIndex = 2;
-            this.lblCaption.Text = "Rooms";
+            this.lblCaption.Text = "Not Available Times";
             // 
             // txtTo
             // 
