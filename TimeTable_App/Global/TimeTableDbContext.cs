@@ -55,8 +55,7 @@ namespace TimeTable_App.Global
         public DbSet<RoomsforaSubGroupModel> RoomsforaSubGroup { get; set; }
         public DbSet<RoomsforConsectiveSessionModel> RoomsforConsectiveSession { get; set; }
         public DbSet<RoomsforSessionModel> RoomsforSession { get; set; }
-
+        public DbSet<ParallelSessionModel> ParallelSessions { get; set; }
         public DbSet<TimetableSubFormModel> TimeTable { get; set; }
-
     }
 }
