@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -45,7 +46,16 @@ namespace TimeTable_App.Models
         public int NoOfStudent { get; set; }
         [Required]
         public int Duration { get; set; }
-        
+
+        [DefaultValue("")]
+        public string Day { get; set; }
+
+        [DefaultValue("")]
+        public string Time { get; set; }
+
+        [DefaultValue("")]
+        public string Room { get; set; }
+
 
         public dynamic GetFormData(TimeTableDbContext _dbContext, string type)
         {
