@@ -346,5 +346,33 @@ namespace TimeTable_App.Forms.SubForms
             initForm();
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (comboSearchType.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Search Type!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboSearchType.Focus();
+            }
+            else if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                MessageBox.Show("Please Enter Search Value!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSearch.Focus();
+            }
+            else
+            {
+                if (comboSearchType.SelectedIndex == 1)
+                {
+                    gridSessionDetails.DataSource = sessionList.Where(session => session.LecturersList.Contains(txtSearch.Text.Trim())).ToList();
+                }
+                else if (comboSearchType.SelectedIndex == 2)
+                {
+                    gridSessionDetails.DataSource = sessionList.Where(session => session.SubjectName == txtSearch.Text.Trim()).ToList();
+                }
+                else if (comboSearchType.SelectedIndex == 3)
+                {
+                    gridSessionDetails.DataSource = sessionList.Where(session => session.GroupId == txtSearch.Text.Trim()).ToList();
+                }
+            }
+        }
     }
 }
